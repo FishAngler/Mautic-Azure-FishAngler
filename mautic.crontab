@@ -1,0 +1,40 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+#8,23,38,52 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:segments:update > /var/log/cron.pipe 2>&1
+#       */5 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:import > /var/log/cron.pipe 2>&1
+#5,20,35,50 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:campaigns:rebuild > /var/log/cron.pipe 2>&1
+#2,17,32,47 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:campaigns:trigger > /var/log/cron.pipe 2>&1
+#0,15,30,45 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:messages:send > /var/log/cron.pipe 2>&1
+#0,15,30,45 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:emails:send > /var/log/cron.pipe 2>&1
+#0,15,30,45 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:email:fetch > /var/log/cron.pipe 2>&1
+#0,15,30,45 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:social:monitoring > /var/log/cron.pipe 2>&1
+#0,15,30,45 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:webhooks:process > /var/log/cron.pipe 2>&1
+#0,15,30,45 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:broadcasts:send > /var/log/cron.pipe 2>&1
+#         * 1 * * *     www-data   php /home/site/wwwroot/bin/console mautic:maintenance:cleanup --days-old=365 > /var/log/cron.pipe 2>&1
+#        0 4 15 * *     www-data   php /home/site/wwwroot/bin/console mautic:iplookup:download > /var/log/cron.pipe 2>&1
+#       */5 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:reports:scheduler > /var/log/cron.pipe 2>&1
+#        0 5 10 * *     www-data   php /home/site/wwwroot/bin/console mautic:unusedip:delete > /var/log/cron.pipe 2>&1
+#
+## ENABLES SUGARCRM CRON
+##10,40 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:integration:fetchleads --fetch-all --integration=Sugarcrm > /var/log/cron.pipe 2>&1
+#
+##ENABLES SALESFORCE CRON
+##10,40 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:integration:fetchleads --integration=Salesforce > /var/log/cron.pipe 2>&1
+##12,42 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:integration:pushactivity --integration=Salesforce > /var/log/cron.pipe 2>&1
+##14,44 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:integration:pushleadactivity --integration=Salesforce > /var/log/cron.pipe 2>&1
+##16,46 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:integration:synccontacts --integration=Salesforce > /var/log/cron.pipe 2>&1
+#
+##ENABLES HUBSPOT CRON
+##10,40 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:integration:fetchleads --integration=Hubspot > /var/log/cron.pipe 2>&1
+##15,45 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:integration:pushactivity --integration=Hubspot > /var/log/cron.pipe 2>&1
+#
+##ENABLES PIPEDRIVE CRON
+##10,40 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:integration:pipedrive:fetch > /var/log/cron.pipe 2>&1
+##15,45 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:integration:pipedrive:push > /var/log/cron.pipe 2>&1
+#
+##ENABLES ZOHO CRON
+##10,40 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:integration:fetchleads --integration=Zoho > /var/log/cron.pipe 2>&1
+#
+##ENABLES DYNAMICS CRON
+##10,40 * * * *     www-data   php /home/site/wwwroot/bin/console mautic:integration:fetchleads -i Dynamics > /var/log/cron.pipe 2>&1
