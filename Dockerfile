@@ -70,12 +70,12 @@ ENV PHP_INI_DATE_TIMEZONE='UTC' \
     PHP_MAX_UPLOAD=512M \
     PHP_MAX_EXECUTION_TIME=300
 
-# Download Mautic from repository
-RUN git clone https://github.com/FishAngler/mautic.git /usr/src/mautic \
+# Download package and extract to web volume
+RUN curl -o mautic.zip -SL https://github.com/FishAngler/mautic/releases/download/FishAngler/FishAngler.zip \
+    && mkdir /usr/src/mautic \
+    && unzip mautic.zip -d /usr/src/mautic \
+    && rm mautic.zip \
     && chown -R www-data:www-data /usr/src/mautic
-
-# Install dependencies.
-RUN cd /usr/src/mautic && composer i -n ; cd -
 
 # Copy init scripts and custom .htaccess
 COPY docker-entrypoint.sh /entrypoint.sh
