@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/appsvc/php:7.4-apache_20210512.1
+FROM mcr.microsoft.com/appsvc/php:7.4-apache_20220405.4
 
 # Install PHP extensions
 RUN apt-get --allow-releaseinfo-change update && apt-get install --no-install-recommends -y \
@@ -71,7 +71,7 @@ ENV PHP_INI_DATE_TIMEZONE='UTC' \
     PHP_MAX_EXECUTION_TIME=300
 
 # Download package and extract to web volume
-RUN curl -o mautic.zip -SL https://github.com/FishAngler/mautic/releases/download/FishAngler/FishAngler.zip \
+RUN curl -o mautic.zip -SL https://github.com/FishAngler/mautic/releases/download/4.2.2.1/4.2.2.1.zip \
     && mkdir /usr/src/mautic \
     && unzip mautic.zip -d /usr/src/mautic \
     && rm mautic.zip \
