@@ -71,7 +71,7 @@ ENV PHP_INI_DATE_TIMEZONE='UTC' \
     PHP_MAX_EXECUTION_TIME=300
 
 # Download package and extract to web volume
-RUN curl -o mautic.zip -SL https://github.com/FishAngler/mautic/releases/download/4.2.2.1/4.2.2.1.zip \
+RUN curl -o mautic.zip -SL https://github.com/FishAngler/mautic/releases/download/4.2.2.2/4.2.2.2.zip \
     && mkdir /usr/src/mautic \
     && unzip mautic.zip -d /usr/src/mautic \
     && rm mautic.zip \
