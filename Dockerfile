@@ -79,9 +79,7 @@ RUN curl -o mautic.zip -SL https://github.com/FishAngler/mautic/releases/downloa
 
 # Copy init scripts and custom .htaccess
 COPY docker-entrypoint.sh /entrypoint.sh
-COPY makeconfig.php /makeconfig.php
-COPY makedb.php /makedb.php
-COPY mautic.crontab /mautic.crontab
+COPY makeconfig.php makedb.php mautic.crontab /
 RUN chmod 644 /mautic.crontab
 
 # Enable Apache Rewrite Module

@@ -61,7 +61,17 @@ echo "Host Name: $MAUTIC_DB_HOST"
 echo "Database Name: $MAUTIC_DB_NAME"
 echo "Database Username: $MAUTIC_DB_USER"
 
+ mkdir -p /mauticp/var/spool
+ mkdir -p /mauticp/media/images
+ mkdir -p /mauticp/media/files/form
+ mkdir -p /mauticp/media/files/temp
+ mkdir -p /mauticp/config
+
 # Write the database connection to the config so the installer prefills it
+if [ -e /mauticp/config/local.php ]; then
+        cp /mauticp/config/local.php /home/site/wwwroot/app/config/local.php
+fi
+
 if ! [ -e app/config/local.php ]; then
         echo "Config not found in $pwd/app/config - creating now..."
         php /makeconfig.php
@@ -71,6 +81,10 @@ if ! [ -e app/config/local.php ]; then
         mkdir -p /home/site/wwwroot/app/logs
         chown www-data:www-data /home/site/wwwroot/app/logs
         echo "Complete! Config has been created"
+fi
+
+if ! [ -e /mauticp/config/local.php ]; then
+        cp /home/site/wwwroot/app/config/local.php /mauticp/config/local.php
 fi
 
 if [[ "$MAUTIC_RUN_CRON_JOBS" == "true" ]]; then
@@ -84,9 +98,17 @@ if [[ "$MAUTIC_RUN_CRON_JOBS" == "true" ]]; then
     CRONPID=$!
 
     echo "Checking if mautic.crontab exists in /home"
+    if [ -e /mauticp/mautic.crontab ]; then
+        echo "Moving mautic.crontab file to /home/mautic.crontab"
+        cp /mauticp/mautic.crontab /home/mautic.crontab
+        chmod 644 /home/mautic.crontab
+    fi
+    
     if ! [ -e /home/mautic.crontab ]; then
         echo "Moving mautic.crontab file to /home/mautic.crontab"
+        cp /mautic.crontab /mauticp/mautic.crontab
         cp /mautic.crontab /home/mautic.crontab
+        chmod 644 /mauticp/mautic.crontab
         chmod 644 /home/mautic.crontab
     fi
     #move the mautic cron job file to /etc/cron.d

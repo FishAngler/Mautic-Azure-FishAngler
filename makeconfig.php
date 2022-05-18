@@ -5,7 +5,13 @@ fwrite($stderr, "\nWriting initial Mautic config\n");
 
 $parameters = array(
 	'db_driver'      => 'pdo_mysql',
-	'install_source' => 'Docker'
+	'install_source' => 'Docker',
+
+    'mailer_spool_path' => '/mauticp/var/spool',
+    'image_path' => '/mauticp/media/images',
+	'upload_dir' => '/mauticp/media/files',
+	'form_upload_dir' => '/mauticp/media/files/form',
+	'report_temp_dir' => '/mauticp/media/files/temp',
 );
 
 if(array_key_exists('MAUTIC_DB_HOST', $_ENV)) {
