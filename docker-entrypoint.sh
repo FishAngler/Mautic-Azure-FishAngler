@@ -113,9 +113,9 @@ if [[ "$MAUTIC_RUN_CRON_JOBS" == "true" ]]; then
     fi
     #move the mautic cron job file to /etc/cron.d
     echo "Moving mautic.crontab file to /etc/cron.d/mautic"
+    dos2unix /home/mautic.crontab
     cp /home/mautic.crontab /etc/cron.d/mautic
     chmod 644 /etc/cron.d/mautic
-    
 else
     echo "Not running cron as requested."
 fi
