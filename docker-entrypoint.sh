@@ -69,7 +69,8 @@ echo "Database Username: $MAUTIC_DB_USER"
 
 # Write the database connection to the config so the installer prefills it
 if [ -e /mauticp/config/local.php ]; then
-        cp /mauticp/config/local.php /home/site/wwwroot/app/config/local.php
+        ln /mauticp/config/local.php /home/site/wwwroot/app/config/local.php -s
+        chown www-data:www-data /home/site/wwwroot/app/config/local.php
 fi
 
 if ! [ -e app/config/local.php ]; then
@@ -84,7 +85,15 @@ if ! [ -e app/config/local.php ]; then
 fi
 
 if ! [ -e /mauticp/config/local.php ]; then
-        cp /home/site/wwwroot/app/config/local.php /mauticp/config/local.php
+        mv /home/site/wwwroot/app/config/local.php /mauticp/config/
+        ln /mauticp/config/local.php /home/site/wwwroot/app/config/local.php -s
+        chown www-data:www-data /home/site/wwwroot/app/config/local.php
+fi
+
+if ! [ -e mauticp/media/images ]; then
+        mkdir -p /home/site/wwwroot/mauticp/media
+        ln /mauticp/media/images /home/site/wwwroot/mauticp/media/ -s
+        chown www-data:www-data /home/site/wwwroot/mauticp/media
 fi
 
 if [[ "$MAUTIC_RUN_CRON_JOBS" == "true" ]]; then
